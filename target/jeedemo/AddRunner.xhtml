@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<head>
+	
+	</head>
+	<h:outputStylesheet library="css" name="css/Forms.css"  />
+	<ui:define name="content">
+	<h:form id="runnerform" class="pure-form">
+	<h:panelGrid columns="2">
+		
+		
+		<h:outputText value="#{msg.runnerFirstNameLabel}" />
+		<h:inputText id="firstName" value="#{runnerBean.runner.firstName}">
+		</h:inputText>
+		
+		<h:outputText value="#{msg.runnerLastNameLabel}" />
+		<h:inputText id="lastName" value="#{runnerBean.runner.lastName}">
+		</h:inputText>
+		
+		
+		<h:outputText value="#{msg.runnerNationalityLabel}"/>
+		<h:inputText id="nationality" value="#{runnerBean.runner.nationality}"/>
+		
+		
+		<h:outputText value="#{msg.runnerWeightLabel}" />
+		<rich:inputNumberSpinner value="#{runnerBean.runner.weight}" maxValue="200">
+
+		</rich:inputNumberSpinner>
+		
+		<h:outputText value="#{msg.runnerHeightLabel}" />
+		<rich:inputNumberSpinner value="#{runnerBean.runner.height}"  maxValue="250">
+		
+			</rich:inputNumberSpinner>
+			
+			
+		<h:outputText value="#{msg.runnerGenderLabel}"/>
+		<h:selectOneMenu id="gender" value="#{runnerBean.runner.gender}">
+		<f:selectItem id="male" itemLabel="Male" itemValue="Male" />
+		<f:selectItem id="female" itemLabel="Female" itemValue="Female" />
+		</h:selectOneMenu>
+		
+		
+		<h:outputText value="#{msg.runnerDateLabel}"/>
+		<rich:calendar value="#{runnerBean.runner.dateOfBirth}"
+				id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+				cellWidth="24px" cellHeight="22px" style="width:200px">
+				<a4j:ajax render="messages" execute="@this" />
+		</rich:calendar>
+		
+		
+		<h:outputText value="#{msg.runnerBDLabel}"/>
+		<h:selectOneMenu id="distance" value="#{runnerBean.runner.bestDistance}">
+			<f:selectItem id="marathon" itemLabel="Marathon" itemValue="42.195" />
+			<f:selectItem id="half-marathon" itemLabel="Half-Marathon" itemValue="21.097" />
+			<f:selectItem id="ten" itemLabel="10k" itemValue="10" />
+			<f:selectItem id="five" itemLabel="5k" itemValue="5" />
+		</h:selectOneMenu>
+		
+		
+	</h:panelGrid>	
+		<h:commandButton value="#{msg.personFormOKButton}"
+				action="#{runnerBean.addRunner}" />
+				
+		<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</h:form>
+	</ui:define>
+</ui:composition>

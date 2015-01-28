@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<h:form>
+	<div class="pure-menu pure-menu-open pure-menu-horizontal">
+  		<a class="pure-menu-heading">Menu</a>
+	  <ul>
+		<li>
+		  <h:commandLink action="home?faces-redirect=true">
+			<h:outputText value="#{msg.linkHome}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="AddRunner?faces-redirect=true">
+			<h:outputText value="Dodaj biegacza" />
+		  </h:commandLink></li>
+		<li>
+		  <h:commandLink action="ShowAll?faces-redirect=true">
+			 <h:outputText value="Wszyscy biegacze" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="RunnerByName?faces-redirect=true">
+			 <h:outputText value="Wyszukaj biegacza" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="AddShoes?faces-redirect=true">
+			 <h:outputText value="Dodaj buty" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="ShowAllShoes?faces-redirect=true">
+			 <h:outputText value="Wszystkie buty" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="addWorkout?faces-redirect=true">
+			 <h:outputText value="Dodaj trening" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showAllWorkouts?faces-redirect=true">
+			 <h:outputText value="Wszystkie treningi" />
+		  </h:commandLink>
+		</li>
+		
+	</ul>
+	</div>
+   </h:form>
+
+</ui:composition>

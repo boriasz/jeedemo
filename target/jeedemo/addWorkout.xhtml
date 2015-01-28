@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<head>
+	
+	</head>
+	<h:outputStylesheet library="css" name="css/Forms.css"  />
+	<ui:define name="content">
+	<h:form id="workoutform" class="pure-form">
+	<h:panelGrid columns="2">
+	
+	<h:outputText value="Dystans" />
+		<h:inputText id="distance" value="#{workoutBean.workout.distance}">
+		</h:inputText>
+		
+		<h:outputText value="Miejsce" />
+		<h:inputText id="place" value="#{workoutBean.workout.place}">
+		</h:inputText>
+		
+		<h:outputText value="Samopoczucie" />
+		<h:inputText id="comfort" value="#{workoutBean.workout.comfort}">
+		</h:inputText>
+		
+		<h:outputText value="Data"/>
+		<rich:calendar value="#{workoutBean.workout.data}"
+				id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+				cellWidth="24px" cellHeight="22px" style="width:200px">
+				<a4j:ajax render="messages" execute="@this" />
+		</rich:calendar>
+		<h:outputText value="Runner" />
+				<h:selectOneMenu value="#{workoutBean.runnerID}">
+					<f:selectItems value="#{runnerBean.allRunners}" var="runners"
+						itemValue="#{runners.id}" itemLabel="#{runners.firstName}" />
+				</h:selectOneMenu>
+				</h:panelGrid>	
+		<h:commandButton value="#{msg.personFormOKButton}"
+				action="#{workoutBean.addWorkout}" />
+				
+				<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>
+		
+		

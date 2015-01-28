@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	<h:head>
+    	<h:outputStylesheet library="css" name="table.css"  />
+    </h:head>
+	<h:form>
+	<h:dataTable value="#{workoutBean.allWorkouts}" var="item"
+     styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+      <f:facet name="header">#{msg.personAllLabel}</f:facet>
+      <h:column>
+        <f:facet name="header">Dystans</f:facet>
+        <h:outputText value="#{item.distance}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.distance}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Data</f:facet>
+        <h:outputText value="#{item.data}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.data}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Samopoczucie</f:facet>
+        <h:outputText value="#{item.comfort}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.comfort}" size="8" rendered="#{item.editable}" />
+      </h:column>
+	  <h:column>
+        <f:facet name="header">Miejsce</f:facet>
+        <h:outputText value="#{item.place}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.place}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Biegacz</f:facet>
+        <h:outputText value="#{item.runner.firstName}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.runner.firstName}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{workoutBean.deleteWorkout}"/>
+        <h:commandLink value="#{msg.actionUpdate}" action="#{workoutBean.editAction}" rendered="#{not item.editable}" />
+      </h:column>
+      </h:dataTable>
+      <h:commandButton value="Save Changes" action="#{shoesBean.saveAction}" />
+      </h:form>
+      </ui:define>
+      </ui:composition>

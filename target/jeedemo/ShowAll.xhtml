@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	<h:head>
+    	<h:outputStylesheet library="css" name="table.css"  />
+    </h:head>
+	<h:form>
+   
+     <h:dataTable value="#{runnerBean.allRunners}" var="item"
+     styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+      <f:facet name="header">#{msg.personAllLabel}</f:facet>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerFirstNameLabel}</f:facet>
+        <h:outputText value="#{item.firstName}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.firstName}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerLastNameLabel}</f:facet>
+        <h:outputText value="#{item.lastName}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.lastName}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerNationalityLabel}</f:facet>
+        <h:outputText value="#{item.nationality}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.nationality}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerWeightLabel}</f:facet>
+        <h:outputText value="#{item.weight}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.weight}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerHeightLabel}</f:facet>
+        <h:outputText value="#{item.height}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.height}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerGenderLabel}</f:facet>
+        <h:outputText value="#{item.gender}" rendered="#{not item.editable}" />
+        <!-- <h:inputText value="#{item.gender}" size="8" rendered="#{item.editable}" /> -->
+        <h:selectOneMenu id="gender" value="#{item.gender}" rendered="#{item.editable}">
+		<f:selectItem id="male" itemLabel="Male" itemValue="Male" />
+		<f:selectItem id="female" itemLabel="Female" itemValue="Female" />
+		</h:selectOneMenu>
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerDateLabel}</f:facet>
+        <h:outputText value="#{item.dateOfBirth}" rendered="#{not item.editable}" />
+       <!--  <h:inputText value="#{item.dateOfBirth}" size="8" rendered="#{item.editable}" /> -->
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.runnerBDLabel}</f:facet>
+        <h:outputText value="#{item.bestDistance}" rendered="#{not item.editable}" />
+        <!-- <h:inputText value="#{item.bestDistance}" size="8" rendered="#{item.editable}" > -->
+        <h:selectOneMenu id="distance" value="#{item.bestDistance}" rendered="#{item.editable}">
+			<f:selectItem id="marathon" itemLabel="Marathon" itemValue="42.195" />
+			<f:selectItem id="half-marathon" itemLabel="Half-Marathon" itemValue="21.097" />
+			<f:selectItem id="ten" itemLabel="10k" itemValue="10" />
+			<f:selectItem id="five" itemLabel="5k" itemValue="5" />
+		</h:selectOneMenu>
+       
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{runnerBean.deleteRunner}"/>
+        <h:commandLink value="#{msg.actionUpdate}" action="#{runnerBean.editAction}" rendered="#{not item.editable}" />
+      </h:column>
+      </h:dataTable>
+      <h:commandButton value="Save Changes" action="#{runnerBean.saveAction}" />
+      </h:form>
+      </ui:define>
+      </ui:composition>
+      

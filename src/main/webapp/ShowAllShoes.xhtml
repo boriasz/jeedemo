@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	<h:head>
+    	<h:outputStylesheet library="css" name="table.css"  />
+    </h:head>
+	<h:form>
+	<h:dataTable value="#{shoesBean.allShoes}" var="item"
+     styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+      <f:facet name="header">#{msg.personAllLabel}</f:facet>
+      <h:column>
+        <f:facet name="header">Marka</f:facet>
+        <h:outputText value="#{item.brand}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.brand}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Model</f:facet>
+        <h:outputText value="#{item.model}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.model}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      <h:column>
+        <f:facet name="header">Cena</f:facet>
+        <h:outputText value="#{item.price}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.price}" size="8" rendered="#{item.editable}" />
+      </h:column>
+       <h:column>
+        <f:facet name="header">Typ Stopy</f:facet>
+        <h:outputText value="#{item.footType}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.footType}" size="8" rendered="#{item.editable}" />
+      </h:column>
+       <h:column>
+        <f:facet name="header">Biegacz</f:facet>
+        <h:outputText value="#{item.runner.firstName}" rendered="#{not item.editable}" />
+        <h:inputText value="#{item.runner.firstName}" size="8" rendered="#{item.editable}" />
+      </h:column>
+      
+      
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{shoesBean.deleteShoes}"/>
+        <h:commandLink value="#{msg.actionUpdate}" action="#{shoesBean.editAction}" rendered="#{not item.editable}" />
+      </h:column>
+      </h:dataTable>
+      <h:commandButton value="Save Changes" action="#{shoesBean.saveAction}" />
+      </h:form>
+      </ui:define>
+      </ui:composition>

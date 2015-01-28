@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+	<h:head>
+    	<h:outputStylesheet library="css" name="table.css"  />
+    </h:head>
+		<h:form>
+		<h:panelGrid columns="2">
+		<h:inputText id="name" value="#{runnerBean.name}"
+					required="#{true}" />
+			</h:panelGrid>
+			<h:commandButton value="Szukaj"
+				action="#{runnerBean.getRunnerByName}" />
+			<h:dataTable value="#{runnerBean.runnersByName}" var="i" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">>
+				<f:facet name="header">Biegacze</f:facet>
+				<h:column>
+					<f:facet name="header">Imie</f:facet>
+					<h:outputText value="#{i.firstName}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nazwisko</f:facet>
+					<h:outputText value="#{i.lastName}" />
+				</h:column>
+				
+
+				
+			</h:dataTable>
+			</h:form>
+
+	</ui:define>
+
+</ui:composition>
